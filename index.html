@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Licencias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(-45deg, #14b8a6, #06b6d4, #2dd4bf, #0891b2);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #14b8a6 0%, #0891b2 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: shimmer 3s infinite;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #14b8a6;
+            font-size: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .logo:hover {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            animation: slideInRight 0.8s ease-out;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .form-content {
+            padding: 45px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+            border-top: 3px solid #14b8a6;
+            padding-top: 25px;
+            position: relative;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .form-section.required-section {
+            border-top-color: #14b8a6;
+        }
+
+        .form-section:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .form-section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .form-section:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .form-section:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #14b8a6, #0891b2);
+            transition: width 0.6s ease;
+        }
+
+        .form-section:hover::before {
+            width: 100%;
+        }
+
+        .section-title {
+            color: #000000;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #14b8a6, #0891b2);
+            transition: width 0.4s ease;
+        }
+
+        .form-section:hover .section-title::after {
+            width: 100%;
+        }
+
+        .section-title .required-badge {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-left: 10px;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        label.required::after {
+            content: ' *';
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            background: #fafafa;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="time"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #14b8a6;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.1),
+                0 10px 30px rgba(20, 184, 166, 0.15);
+            transform: translateY(-2px);
+        }
+
+        input.error,
+        textarea.error {
+            border-color: #ef4444;
+            animation: shake 0.5s;
+        }
+
+        input.error:focus,
+        textarea.error:focus {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        .radio-group {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .radio-group.error {
+            border-color: #ef4444;
+            animation: shake 0.5s;
+        }
+
+        .radio-group::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .radio-group:hover::before {
+            left: 100%;
+        }
+
+        .radio-group:hover {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(20, 184, 166, 0.1);
+        }
+
+        .radio-group.active {
+            background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+            border-color: #14b8a6;
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.2);
+            transform: scale(1.02);
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+
+        input[type="radio"] {
+            margin-top: 3px;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #14b8a6;
+            transition: transform 0.2s ease;
+        }
+
+        input[type="radio"]:checked {
+            transform: scale(1.2);
+        }
+
+        .radio-text {
+            flex: 1;
+        }
+
+        .radio-title {
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 10px;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .radio-group.active .radio-title {
+            color: #14b8a6;
+        }
+
+        .description-input {
+            margin-top: 12px;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #6b7280;
+            font-style: italic;
+            margin-top: 18px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            animation: fadeInUp 0.5s ease-out;
+            box-shadow: 0 3px 10px rgba(245, 158, 11, 0.1);
+        }
+
+        .period-box {
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .period-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .period-box:hover::before {
+            opacity: 1;
+            animation: shimmer 2s infinite;
+        }
+
+        .period-box.hours {
+            background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+            border-color: #5eead4;
+        }
+
+        .period-box.days {
+            background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%);
+            border-color: #67e8f9;
+        }
+
+        .period-box.has-data {
+            border-color: #14b8a6;
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .period-box.error {
+            border-color: #ef4444;
+            animation: shake 0.5s;
+        }
+
+        .period-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(20, 184, 166, 0.25);
+        }
+
+        .period-title {
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 18px;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .period-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .period-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .print-date {
+            text-align: right;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .print-date label {
+            font-weight: 700;
+            color: #14b8a6;
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .alert-box.show {
+            display: block;
+        }
+
+        .alert-box h3 {
+            color: #dc2626;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-box ul {
+            margin-left: 20px;
+            color: #991b1b;
+        }
+
+        .alert-box li {
+            margin-bottom: 5px;
+        }
+
+        .btn-container {
+            text-align: center;
+            padding-top: 35px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, #14b8a6 0%, #0891b2 100%);
+            color: white;
+            padding: 18px 55px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-generate::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-generate:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(20, 184, 166, 0.6);
+        }
+
+        .btn-generate:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .btn-generate svg {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-generate:hover svg {
+            transform: translateY(3px);
+            animation: pulse 1s infinite;
+        }
+
+        .btn-generate span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Estilos para impresión - OPTIMIZADO PARA UNA SOLA PÁGINA */
+        @media print {
+            @page {
+                size: letter;
+                margin: 0.35in 0.5in;
+            }
+
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+                animation: none;
+            }
+
+            html {
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+                border: none;
+                padding: 12px;
+                animation: none;
+            }
+
+            .header,
+            .btn-container,
+            .alert-box,
+            .note {
+                display: none !important;
+            }
+
+            .form-content {
+                padding: 0;
+                font-size: 9.5px;
+            }
+
+            .print-header {
+                display: block !important;
+                text-align: center;
+                margin-bottom: 8px;
+                border: none;
+                padding: 8px 0;
+            }
+
+            .print-logo {
+                width: 50px;
+                height: 50px;
+                margin: 0 auto 6px;
+                border: 2.5px solid #14b8a6;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                color: #14b8a6;
+                font-size: 12px;
+            }
+
+            .print-logo img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+
+            .print-title {
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 0;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .print-date {
+                text-align: right;
+                margin-bottom: 10px;
+                font-size: 10px;
+                font-weight: 600;
+            }
+
+            .print-date label {
+                font-weight: 700;
+            }
+
+            .form-section {
+                border-top: 2px solid #000 !important;
+                margin-bottom: 10px;
+                border-top: 2px solid #000;
+                padding-top: 6px;
+                page-break-inside: avoid;
+                animation: none;
+            }
+
+
+            .form-section::before {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 11px;
+                font-weight: 800;
+                margin-bottom: 6px;
+                color: #000;
+            }
+
+            .section-title::after,
+            .section-title .required-badge {
+                display: none;
+            }
+
+            .form-row {
+                gap: 10px;
+            }
+
+            .form-group {
+                margin-bottom: 6px;
+            }
+
+            label {
+                font-size: 9px;
+                margin-bottom: 2px;
+                font-weight: 700;
+                color: #000;
+            }
+
+            label::after {
+                display: none;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            input[type="time"],
+            textarea {
+                padding: 3px 5px;
+                font-size: 9px;
+                border: 1.5px solid #333;
+                background: white;
+                color: #000;
+                font-weight: 500;
+            }
+
+            textarea {
+                min-height: 38px;
+                line-height: 1.2;
+            }
+
+            .radio-group {
+                background: white;
+                border: 1.5px solid #666;
+                padding: 5px 7px;
+                margin-bottom: 4px;
+            }
+
+            .radio-group::before {
+                display: none;
+            }
+
+            .radio-label {
+                gap: 7px;
+            }
+
+            .radio-title {
+                font-size: 9.5px;
+                margin-bottom: 3px;
+                font-weight: 700;
+                color: #000;
+            }
+
+            .description-input {
+                margin-top: 3px;
+                padding: 3px 4px;
+                font-size: 9px;
+                border: 1.5px solid #666;
+            }
+
+            .note {
+                font-size: 8px;
+                padding: 4px;
+                margin-top: 5px;
+                background: #f9f9f9;
+                border: 1px solid #999;
+                line-height: 1.2;
+            }
+
+            .period-box {
+                border: 1.5px solid #666;
+                background: #fafafa;
+                padding: 6px;
+                margin-bottom: 5px;
+            }
+
+            .period-box::before {
+                display: none;
+            }
+
+            .period-box.hide-print {
+                display: none !important;
+            }
+
+            .period-title {
+                font-size: 10px;
+                margin-bottom: 5px;
+                font-weight: 700;
+                color: #000;
+            }
+
+            .period-row,
+            .period-row-2 {
+                gap: 8px;
+            }
+
+            input[type="radio"] {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 14px;
+                height: 14px;
+                border: 2px solid #000;
+                border-radius: 0;
+                position: relative;
+                flex-shrink: 0;
+                background: white;
+            }
+
+            input[type="radio"]:checked::after {
+                content: '✓';
+                position: absolute;
+                top: -3px;
+                left: 1px;
+                font-size: 13px;
+                font-weight: 900;
+                color: #000;
+            }
+
+            .signature-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+                margin-top: 80px;
+                page-break-inside: avoid;
+            }
+
+            .signature-box {
+                text-align: center;
+                border-top: 2px solid #000;
+                padding-top: 5px;
+                margin-top: 50px;
+                font-size: 9px;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            .error-message {
+                display: none !important;
+            }
+        }
+
+        .print-header {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+
+            .form-row,
+            .period-row,
+            .period-row-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .form-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header para pantalla -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="Logo">
+                </div>
+                <div>
+                    <h1>Solicitud de Licencias</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header para impresión -->
+        <div class="print-header">
+            <div class="print-logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <div class="print-title">SOLICITUD DE LICENCIAS Y PERMISOS</div>
+        </div>
+
+        <div class="form-content">
+            <!-- Alert Box -->
+            <div class="alert-box" id="alertBox">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                        </path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Por favor complete los campos obligatorios:
+                </h3>
+                <ul id="errorList"></ul>
+            </div>
+
+            <form id="licenciaForm">
+                <!-- Fecha de Solicitud -->
+                <div class="form-group print-date">
+                    <label for="fechaSolicitud">Fecha de Solicitud</label>
+                    <input type="date" id="fechaSolicitud" name="fechaSolicitud" required>
+                </div>
+
+                <!-- Sección 1: Datos del Trabajador (OBLIGATORIO) -->
+                <div class="form-section required-section">
+                    <h2 class="section-title">
+                        1. DATOS DEL TRABAJADOR
+                    </h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombres" class="required">Nombres y Apellidos</label>
+                            <input type="text" id="nombres" name="nombres" placeholder="Ingrese nombres completos"
+                                required>
+                            <div class="error-message" id="errorNombres">Este campo es obligatorio</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cargo" class="required">Cargo</label>
+                            <input type="text" id="cargo" name="cargo" placeholder="Ingrese cargo" required>
+                            <div class="error-message" id="errorCargo">Este campo es obligatorio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 2: Motivo de la Licencia (OBLIGATORIO) -->
+                <div class="form-section required-section">
+                    <h2 class="section-title">
+                        2. MOTIVO DE LA LICENCIA
+                    </h2>
+                    <div class="error-message" id="errorTipoLicencia">Debe seleccionar un tipo de licencia y
+                        proporcionar una descripción</div>
+
+                    <div class="radio-group" id="radio1">
+                        <label class="radio-label">
+                            <input type="radio" name="tipoLicencia" value="reposicion" onclick="toggleDescription(1)">
+                            <div class="radio-text">
+                                <div class="radio-title">CON REPOSICIÓN</div>
+                                <input type="text" id="desc1" class="description-input"
+                                    placeholder="Descripción del motivo" style="display:none;">
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="radio-group" id="radio2">
+                        <label class="radio-label">
+                            <input type="radio" name="tipoLicencia" value="descuento" onclick="toggleDescription(2)">
+                            <div class="radio-text">
+                                <div class="radio-title">CON DESCUENTO</div>
+                                <input type="text" id="desc2" class="description-input"
+                                    placeholder="Descripción del motivo" style="display:none;">
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="radio-group" id="radio3">
+                        <label class="radio-label">
+                            <input type="radio" name="tipoLicencia" value="vacacion" onclick="toggleDescription(3)">
+                            <div class="radio-text">
+                                <div class="radio-title">A CUENTA DE VACACIÓN</div>
+                                <input type="text" id="desc3" class="description-input"
+                                    placeholder="Descripción del motivo" style="display:none;">
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="note">
+                        📌 Nota: Podrá ser a cuenta de vacaciones en los casos que corresponda, caso contrario se
+                        procede con reposición o descuento.
+                    </div>
+                </div>
+
+                <!-- Sección 3: Período Solicitado (OBLIGATORIO) -->
+                <div class="form-section required-section">
+                    <h2 class="section-title">
+                        3. PERÍODO SOLICITADO
+                    </h2>
+                    <div class="error-message" id="errorPeriodo">Debe completar al menos una opción (horas o días)</div>
+
+                    <div class="period-box hours" id="horasBox">
+                        <div class="period-title">Horas a Solicitar:</div>
+                        <div class="period-row">
+                            <div class="form-group">
+                                <label for="horasDesde">Desde:</label>
+                                <input type="time" id="horasDesde" name="horasDesde" onchange="checkPeriod()">
+                            </div>
+                            <div class="form-group">
+                                <label for="horasHasta">Hasta:</label>
+                                <input type="time" id="horasHasta" name="horasHasta" onchange="checkPeriod()">
+                            </div>
+                            <div class="form-group">
+                                <label for="horasFecha">Fecha:</label>
+                                <input type="date" id="horasFecha" name="horasFecha" onchange="checkPeriod()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="period-box days" id="diasBox">
+                        <div class="period-title">Días a Solicitar:</div>
+                        <div class="period-row-2">
+                            <div class="form-group">
+                                <label for="diasDesde">Desde:</label>
+                                <input type="date" id="diasDesde" name="diasDesde" onchange="checkPeriod()">
+                            </div>
+                            <div class="form-group">
+                                <label for="diasHasta">Hasta:</label>
+                                <input type="date" id="diasHasta" name="diasHasta" onchange="checkPeriod()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 4: Seguimiento y Control -->
+                <div class="form-section">
+                    <h2 class="section-title">4. SEGUIMIENTO Y CONTROL</h2>
+                    <div class="form-group">
+                        <label for="seguimiento">Observaciones y Seguimiento:</label>
+                        <textarea id="seguimiento" name="seguimiento"
+                            placeholder="Ingrese observaciones y seguimiento del permiso solicitado..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Firmas (solo visible en impresión) -->
+                <div class="signature-section" style="display:none;">
+                    <div class="signature-box">
+                        <strong>FIRMA DEL SOLICITANTE</strong>
+                    </div>
+                    <div class="signature-box">
+                        <strong>AUTORIZACIÓN COORD. ADM.<br>Y RELACIONES CORP.</strong>
+                    </div>
+                </div>
+
+                <!-- Botón Generar PDF -->
+                <div class="btn-container">
+                    <button type="button" class="btn-generate" onclick="generarPDF()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span>Imprimir</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Establecer fecha actual automáticamente
+        document.addEventListener('DOMContentLoaded', function () {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('fechaSolicitud').value = today;
+        });
+
+        function checkPeriod() {
+            const horasDesde = document.getElementById('horasDesde').value;
+            const horasHasta = document.getElementById('horasHasta').value;
+            const horasFecha = document.getElementById('horasFecha').value;
+            const diasDesde = document.getElementById('diasDesde').value;
+            const diasHasta = document.getElementById('diasHasta').value;
+
+            const horasBox = document.getElementById('horasBox');
+            const diasBox = document.getElementById('diasBox');
+
+            if (horasDesde || horasHasta || horasFecha) {
+                horasBox.classList.add('has-data');
+            } else {
+                horasBox.classList.remove('has-data');
+            }
+
+            if (diasDesde || diasHasta) {
+                diasBox.classList.add('has-data');
+            } else {
+                diasBox.classList.remove('has-data');
+            }
+        }
+
+        function toggleDescription(option) {
+            for (let i = 1; i <= 3; i++) {
+                const desc = document.getElementById('desc' + i);
+                const radio = document.getElementById('radio' + i);
+
+                if (i === option) {
+                    desc.style.display = 'block';
+                    radio.classList.add('active');
+                } else {
+                    desc.style.display = 'none';
+                    radio.classList.remove('active');
+                }
+            }
+        }
+
+        function validarFormulario() {
+            let errores = [];
+            let camposInvalidos = [];
+
+            // Limpiar errores previos
+            document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+            document.querySelectorAll('.error-message').forEach(el => el.classList.remove('show'));
+
+            // 1. Validar Datos del Trabajador
+            const nombres = document.getElementById('nombres').value.trim();
+            const cargo = document.getElementById('cargo').value.trim();
+
+            if (!nombres) {
+                errores.push('Nombres y Apellidos del trabajador');
+                document.getElementById('nombres').classList.add('error');
+                document.getElementById('errorNombres').classList.add('show');
+                camposInvalidos.push('nombres');
+            }
+
+            if (!cargo) {
+                errores.push('Cargo del trabajador');
+                document.getElementById('cargo').classList.add('error');
+                document.getElementById('errorCargo').classList.add('show');
+                camposInvalidos.push('cargo');
+            }
+
+            // 2. Validar Motivo de la Licencia
+            const tipoLicenciaSeleccionado = document.querySelector('input[name="tipoLicencia"]:checked');
+            let descripcionCompleta = false;
+
+            if (tipoLicenciaSeleccionado) {
+                const opcion = tipoLicenciaSeleccionado.value;
+                let descId = '';
+
+                if (opcion === 'reposicion') descId = 'desc1';
+                else if (opcion === 'descuento') descId = 'desc2';
+                else if (opcion === 'vacacion') descId = 'desc3';
+
+                const descripcion = document.getElementById(descId).value.trim();
+                if (descripcion) {
+                    descripcionCompleta = true;
+                } else {
+                    errores.push('Descripción del motivo de la licencia');
+                    document.getElementById(descId).classList.add('error');
+                    document.getElementById('errorTipoLicencia').classList.add('show');
+                    for (let i = 1; i <= 3; i++) {
+                        document.getElementById('radio' + i).classList.add('error');
+                    }
+                    camposInvalidos.push('motivo');
+                }
+            } else {
+                errores.push('Tipo de licencia (debe seleccionar una opción)');
+                document.getElementById('errorTipoLicencia').classList.add('show');
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById('radio' + i).classList.add('error');
+                }
+                camposInvalidos.push('motivo');
+            }
+
+            // 3. Validar Período Solicitado
+            const horasDesde = document.getElementById('horasDesde').value;
+            const horasHasta = document.getElementById('horasHasta').value;
+            const horasFecha = document.getElementById('horasFecha').value;
+            const diasDesde = document.getElementById('diasDesde').value;
+            const diasHasta = document.getElementById('diasHasta').value;
+
+            const tieneHoras = horasDesde && horasHasta && horasFecha;
+            const tieneDias = diasDesde && diasHasta;
+
+            if (!tieneHoras && !tieneDias) {
+                errores.push('Período solicitado (complete horas O días)');
+                document.getElementById('errorPeriodo').classList.add('show');
+                document.getElementById('horasBox').classList.add('error');
+                document.getElementById('diasBox').classList.add('error');
+                camposInvalidos.push('periodo');
+            }
+
+            // Mostrar errores
+            if (errores.length > 0) {
+                const alertBox = document.getElementById('alertBox');
+                const errorList = document.getElementById('errorList');
+
+                errorList.innerHTML = '';
+                errores.forEach(error => {
+                    const li = document.createElement('li');
+                    li.textContent = error;
+                    errorList.appendChild(li);
+                });
+
+                alertBox.classList.add('show');
+
+                // Scroll al primer error
+                if (camposInvalidos.length > 0) {
+                    const primerError = document.getElementById(camposInvalidos[0]) ||
+                        document.getElementById('radio1');
+                    primerError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
+        function generarPDF() {
+            // Validar formulario antes de generar PDF
+            if (!validarFormulario()) {
+                return;
+            }
+
+            // Ocultar alerta si está visible
+            document.getElementById('alertBox').classList.remove('show');
+
+            const horasBox = document.getElementById('horasBox');
+            const diasBox = document.getElementById('diasBox');
+
+            const horasDesde = document.getElementById('horasDesde').value;
+            const horasHasta = document.getElementById('horasHasta').value;
+            const horasFecha = document.getElementById('horasFecha').value;
+            const diasDesde = document.getElementById('diasDesde').value;
+            const diasHasta = document.getElementById('diasHasta').value;
+
+            const tieneHoras = horasDesde || horasHasta || horasFecha;
+            const tieneDias = diasDesde || diasHasta;
+
+            horasBox.classList.remove('hide-print', 'force-show');
+            diasBox.classList.remove('hide-print', 'force-show');
+
+            if (tieneHoras && !tieneDias) {
+                diasBox.classList.add('hide-print');
+                horasBox.classList.add('force-show');
+            } else if (tieneDias && !tieneHoras) {
+                horasBox.classList.add('hide-print');
+                diasBox.classList.add('force-show');
+            } else if (tieneHoras && tieneDias) {
+                horasBox.classList.add('force-show');
+                diasBox.classList.add('force-show');
+            } else {
+                horasBox.classList.add('force-show');
+                diasBox.classList.add('force-show');
+            }
+
+            document.querySelector('.signature-section').style.display = 'grid';
+            window.print();
+
+            setTimeout(function () {
+                horasBox.classList.remove('hide-print', 'force-show');
+                diasBox.classList.remove('hide-print', 'force-show');
+            }, 500);
+
+            setTimeout(function () {
+                document.getElementById('licenciaForm').reset();
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('fechaSolicitud').value = today;
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById('desc' + i).style.display = 'none';
+                    document.getElementById('radio' + i).classList.remove('active');
+                }
+                document.querySelector('.signature-section').style.display = 'none';
+                horasBox.classList.remove('has-data');
+                diasBox.classList.remove('has-data');
+            }, 1000);
+        }
+
+        window.addEventListener('beforeprint', function () {
+            document.querySelector('.signature-section').style.display = 'grid';
+
+            const horasBox = document.getElementById('horasBox');
+            const diasBox = document.getElementById('diasBox');
+
+            const horasDesde = document.getElementById('horasDesde').value;
+            const horasHasta = document.getElementById('horasHasta').value;
+            const horasFecha = document.getElementById('horasFecha').value;
+            const diasDesde = document.getElementById('diasDesde').value;
+            const diasHasta = document.getElementById('diasHasta').value;
+
+            const tieneHoras = horasDesde || horasHasta || horasFecha;
+            const tieneDias = diasDesde || diasHasta;
+
+            horasBox.classList.remove('hide-print', 'force-show');
+            diasBox.classList.remove('hide-print', 'force-show');
+
+            if (tieneHoras && !tieneDias) {
+                diasBox.classList.add('hide-print');
+                horasBox.classList.add('force-show');
+            } else if (tieneDias && !tieneHoras) {
+                horasBox.classList.add('hide-print');
+                diasBox.classList.add('force-show');
+            } else if (tieneHoras && tieneDias) {
+                horasBox.classList.add('force-show');
+                diasBox.classList.add('force-show');
+            } else {
+                horasBox.classList.add('force-show');
+                diasBox.classList.add('force-show');
+            }
+        });
+
+        window.addEventListener('afterprint', function () {
+            document.querySelector('.signature-section').style.display = 'none';
+            document.getElementById('horasBox').classList.remove('hide-print', 'force-show');
+            document.getElementById('diasBox').classList.remove('hide-print', 'force-show');
+        });
+    </script>
+</body>
+
+</html>
