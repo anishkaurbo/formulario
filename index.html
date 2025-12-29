@@ -908,6 +908,75 @@
                 display: none !important;
             }
         }
+        
+         /* Optimización para impresión en móvil */
+            @media print {
+                body {
+                    padding: 0;
+                }
+
+                .container {
+                    padding: 8px;
+                }
+
+                .form-content {
+                    padding: 0;
+                    font-size: 8.5px;
+                }
+
+                .print-logo {
+                    width: 45px;
+                    height: 45px;
+                    font-size: 11px;
+                }
+
+                .print-title {
+                    font-size: 12px;
+                }
+
+                .section-title {
+                    font-size: 10px;
+                }
+
+                label {
+                    font-size: 8px;
+                }
+
+                input[type="text"],
+                input[type="date"],
+                input[type="time"],
+                textarea {
+                    font-size: 8px;
+                    padding: 2px 4px;
+                }
+
+                .radio-title {
+                    font-size: 8.5px;
+                }
+
+                .period-title {
+                    font-size: 9px;
+                }
+
+                .period-box {
+                    padding: 5px;
+                }
+
+                .form-section {
+                    margin-bottom: 8px;
+                    padding-top: 5px;
+                }
+
+                .signature-section {
+                    margin-top: 60px;
+                    gap: 20px;
+                }
+
+                .signature-box {
+                    font-size: 8px;
+                    margin-top: 40px;
+                }
+            }
 
         .print-header {
             display: none;
